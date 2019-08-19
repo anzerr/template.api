@@ -15,7 +15,7 @@ export default class MainController extends Server.Controller {
 
 	@Get(':name')
 	@Midware(midware.validate)
-	@Meta.param.path('name', 'account to query on', DOG.NAME)
+	@Meta.param.path('name', 'Name for the good dog', DOG.NAME)
 	@Meta.responses(200, 'good')
 	@Meta.responses(500, 'bad')
 	get(): Promise<any> {

@@ -13,10 +13,18 @@
 			"dom"
 		],
 		"outDir": "./dist",
-	    "baseUrl": "./"
+	    "baseUrl": "./",
+		"paths": {
+			"@util/*": ["./src/util/*"],
+			"@controller/*": ["./src/controller/*"],
+			"@entity/*": ["./src/entity/*"]
+		}
 	},
 	"include": [
 		"./src/*",
+		"./src/controller/*",
+		"./src/entity/*",
+		"./src/util/*",
 		"./index.ts"
 	]
 }

@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
-		"start": "ts-node index.ts",
+		"start": "npm run build && ts-node index.ts",
 		"build": "tsc -p ./",
 		"clean": "find ./src -regex \".*.(js|map|d.ts)\" -type f -delete && rm -Rf ./dist"
 	},
@@ -30,5 +30,10 @@
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-typescript"
+	},
+	"pathAlias": {
+		"@util": "dist/src/util",
+		"@controller": "dist/src/controller",
+		"@entity": "dist/src/entity"
 	}
 }

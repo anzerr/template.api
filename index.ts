@@ -7,34 +7,34 @@ import {Server} from 'http.ts';
 import {Swagger, SwaggerDocument} from 'swagger.ts';
 import * as path from 'path';
 import * as color from 'console.color';
-import Config from '../config';
+import Config from '@util/config';
+import MainController from '@controller/main';
 
-export default (controller): Promise<Server | void> => {
-	if (process.argv[2] || process.env.config) {
-		Config.path = path.join(__dirname, process.env.config || process.argv[2]);
-	} else {
-		Config.path = path.join(__dirname, '../config.js');
+if (process.argv[2] || process.env.config) {
+	Config.path = path.join(__dirname, process.env.config || process.argv[2]);
+} else {
+	Config.path = path.join(__dirname, './config.js');
+}
+console.log('config.path', Config.path, require(Config.path));
+
+const document = new SwaggerDocument();
+
+const s = new Server(3000)
+	.withController([Swagger, MainController]);
+
+s.on('log', (arg) => {
+	if (arg[0] === 'request') {
+		console.log(color.cyan(`HTTP:${(new Date()).toUTCString()}`), color.white(arg[1]));
 	}
-	console.log('config.path', Config.path, require(Config.path));
+}).on('error', (err) => {
+	console.log(color.cyan(`HTTP:${(new Date()).toUTCString()}`), color.red(err));
+});
 
-	const document = new SwaggerDocument();
+s.start().then(() => {
+	Swagger.json = document.withServer(s).toJson();
+	return s;
+}).catch((err) => {
+	console.log(err);
+	process.exit(1);
+});
 
-	const s = new Server(3000)
-		.withController([Swagger].concat(controller));
-
-	s.on('log', (arg) => {
-		if (arg[0] === 'request') {
-			console.log(color.cyan(`HTTP:${(new Date()).toUTCString()}`), color.white(arg[1]));
-		}
-	}).on('error', (err) => {
-		console.log(color.cyan(`HTTP:${(new Date()).toUTCString()}`), color.red(err));
-	});
-
-	return s.start().then(() => {
-		Swagger.json = document.withServer(s).toJson();
-		return s;
-	}).catch((err) => {
-		console.log(err);
-		process.exit(1);
-	});
-};

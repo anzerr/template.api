@@ -1,0 +1,25 @@
+{
+	"name": "template.api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc -p ./",
+		"clean": "find ./src -regex \".*.(js|map|d.ts)\" -type f -delete && rm -Rf ./dist"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^12.7.2",
+		"eslint-config-typescript": "git+https://git@github.com/anzerr/eslint-config-typescript.git",
+		"ts-node": "^8.3.0",
+		"typescript": "^3.5.3"
+	},
+	"dependencies": {
+		"reflect-metadata": "^0.1.13"
+	},
+	"eslintConfig": {
+		"extends": "eslint-config-typescript"
+	}
+}

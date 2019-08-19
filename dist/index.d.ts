@@ -1,3 +1,4 @@
 import 'reflect-metadata';
-declare const _default: (controller: any) => Promise<any>;
+import { Server } from 'http.ts';
+declare const _default: (controller: any) => Promise<void | Server>;
 export default _default;

@@ -18,7 +18,15 @@
 		"typescript": "^3.5.3"
 	},
 	"dependencies": {
-		"reflect-metadata": "^0.1.13"
+		"reflect-metadata": "^0.1.13",
+		"alias.util": "git+https://git@github.com/anzerr/alias.util.git",
+		"console.color": "git+https://git@github.com/anzerr/console.color.git",
+		"fs.promisify": "git+https://git@github.com/anzerr/fs.promisify.git",
+		"http.ts": "git+https://git@github.com/anzerr/http.ts.git",
+		"inject.ts": "git+https://git@github.com/anzerr/inject.ts.git",
+		"request.libary": "git+https://git@github.com/anzerr/request.libary.git",
+		"swagger.ts": "git+https://git@github.com/anzerr/swagger.ts.git",
+		"type.util": "git+https://git@github.com/anzerr/type.util.git"
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-typescript"

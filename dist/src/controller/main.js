@@ -18,6 +18,7 @@ const enum_1 = require("@util/enum");
 const midware_1 = require("../entity/midware");
 let MainController = class MainController extends http_ts_1.Server.Controller {
     get() {
+        this.logger.log(`${this.param.name} is a good dog`);
         return this.status(200).json({ dog: `good ${this.param.name}` });
     }
 };

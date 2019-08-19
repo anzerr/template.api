@@ -19,6 +19,7 @@ export default class MainController extends Server.Controller {
 	@Meta.responses(200, 'good')
 	@Meta.responses(500, 'bad')
 	get(): Promise<any> {
+		this.logger.log(`${this.param.name} is a good dog`);
 		return this.status(200).json({dog: `good ${this.param.name}`});
 	}
 
